@@ -36,6 +36,5 @@ var MyClass = (function () {
     ], MyClass);
     return MyClass;
 })();
-var k = new MyClass;
-console.log(Db.inject);
+var k = new MyClass();
 console.log(k.db.user.test);
