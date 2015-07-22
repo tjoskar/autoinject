@@ -14,8 +14,6 @@ class MyClass {
     constructor(public db?: Db) {}
 }
 
-var k = new MyClass;
-
-console.log(Db.inject);
+var k = new MyClass();
 
 console.log(k.db.user.test);
