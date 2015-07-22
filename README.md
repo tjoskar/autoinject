@@ -13,6 +13,8 @@ $ npm install git://github.com/tjoskar/autoinject.git
 #### Usage
 
 ```javascript
+/// <reference path="node_modules/autoinject/index.d.ts"/>
+
 import {autoInject} from 'autoinject';
 import {DB} from 'db';
 
@@ -25,6 +27,8 @@ console.log(Controller.inject); // [ DB ]
 ```
 
 ```javascript
+/// <reference path="node_modules/autoinject/index.d.ts"/>
+
 import {autoInject, autoInstantiate} from 'autoinject';
 
 class User {
