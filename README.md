@@ -1,6 +1,6 @@
 ## Auto inject
 
-Auto inject for typescript.
+Auto dependency injector for typescript.
 
 This is a proof of concept project, it may not be stable.
 
@@ -21,7 +21,7 @@ class Controller {
     constructor(db: DB) {}
 }
 
-console.log(Controller.inject); // [ User ]
+console.log(Controller.inject); // [ DB ]
 ```
 
 ```javascript
@@ -36,12 +36,16 @@ class Db {
     constructor(public user: User) {}
 }
 
-@autoInstantiate
+@autoInstantiate // This will create a singelton
 class MyClass {
     constructor(public db?: Db) {}
 }
 
-var k = new MyClass;
+// MyClass is now a singelton and has been converted to a function
+// the "new" keyword is therefore not needed but to keep typescript happy we let it be there.
+var k = new MyClass();
 
-console.log(k.db.user.test); // It works fine
+
+
+console.log(k.db.user.test); // output: "It works fine"
 ```
