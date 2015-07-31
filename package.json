@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/tjoskar/autoinject/issues"
   },
-  "homepage": "https://github.com/tjoskar/autoinject#readme"
+  "homepage": "https://github.com/tjoskar/autoinject#readme",
+  "typescript": {
+      "definition": "./index.d.ts"
+  }
 }
