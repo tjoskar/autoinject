@@ -1,15 +1,19 @@
 import {autoInject, autoInstantiate} from '../src/autoinject';
+import {inject} from '../src/inject';
 
-class User {
-    test = 'It works fine';
+interface User {
+    test: string;
 }
 
-@autoInject // can be @autoInstantiate
+let user: User = {
+    test: 'It works fine'
+}
+
 class Db {
 
     user: User;
 
-    constructor(user: User) {
+    constructor(@inject(user) user: User) {
         this.user = user;
     }
 }
