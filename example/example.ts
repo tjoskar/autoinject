@@ -6,12 +6,22 @@ class User {
 
 @autoInject // can be @autoInstantiate
 class Db {
-    constructor(public user: User) {}
+
+    user: User;
+
+    constructor(user: User) {
+        this.user = user;
+    }
 }
 
 @autoInstantiate
 class MyClass {
-    constructor(public db?: Db) {}
+
+    db: Db;
+
+    constructor(db?: Db) {
+        this.db = db;
+    }
 }
 
 var k = new MyClass();
