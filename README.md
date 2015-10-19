@@ -50,6 +50,8 @@ console.log(k.db.user.test); // output: "It works fine"
 ```
 
 ```javascript
+import {inject, autoInstantiate} from 'autoinject';
+
 interface User {
     test: string;
 }
