@@ -7,4 +7,4 @@ var _distSrcInject = require('./dist/src/inject');
 
 exports.autoInject = _distSrcAutoInject.autoInject;
 exports.autoInstantiate = _distSrcAutoInject.autoInstantiate;
-exports.Inject = _distSrcInject.inject;
+exports.inject = _distSrcInject.inject;
