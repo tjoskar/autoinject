@@ -7,12 +7,13 @@ This is a proof of concept project, it may not be stable.
 #### Install
 
 ```
-$ npm install git://github.com/tjoskar/autoinject.git
+$ npm install autoinject
 ```
 
 #### Usage
 
 ```javascript
+// Link the d.ts file with `tsd link` or create a reference:
 /// <reference path="node_modules/autoinject/index.d.ts"/>
 
 import {autoInject} from 'autoinject';
@@ -27,8 +28,6 @@ console.log(Controller.inject); // [ DB ]
 ```
 
 ```javascript
-/// <reference path="node_modules/autoinject/index.d.ts"/>
-
 import {autoInject, autoInstantiate} from 'autoinject';
 
 class User {
@@ -40,16 +39,66 @@ class Db {
     constructor(public user: User) {}
 }
 
-@autoInstantiate // This will create a singelton
+@autoInstantiate
 class MyClass {
     constructor(public db?: Db) {}
 }
 
-// MyClass is now a singelton and has been converted to a function
-// the "new" keyword is therefore not needed but to keep typescript happy we let it be there.
 var k = new MyClass();
 
-
-
 console.log(k.db.user.test); // output: "It works fine"
+```
+
+```javascript
+interface User {
+    test: string;
+}
+
+let user: User = {
+    test: 'It works fine'
+}
+
+class Db {
+
+    user: User;
+
+    constructor(@inject(user) user: User) {
+        this.user = user;
+    }
+}
+
+@autoInstantiate
+class MyClass {
+
+    db: Db;
+
+    constructor(db?: Db) {
+        this.db = db;
+    }
+}
+
+var k = new MyClass();
+
+console.log(k.db.user.test);
+```
+
+```javascript
+import {autoInject, dependencyInjection} from 'autoinject';
+
+class User {
+    test = 'It works fine';
+}
+
+@autoInject
+class Db {
+    public user: User;
+
+    constructor(user: User) {
+        this.user = user;
+    }
+}
+
+let db = dependencyInjection(Db);
+
+console.log(db.user.test); // output: "It works fine"
 ```
