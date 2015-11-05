@@ -1,13 +1,13 @@
 {
   "name": "autoinject",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Autoinject classes",
   "main": "autoinject.ts",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified :/ \" && exit 1",
     "prepublish": "tsc"
   },
   "repository": {
@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/tjoskar/autoinject#readme",
   "typescript": {
-      "definition": "./index.d.ts"
+      "definition": "./typings/autoinject.d.ts"
   }
 }
