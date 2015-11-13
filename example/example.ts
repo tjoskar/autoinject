@@ -1,3 +1,5 @@
+/// <reference path="../typings/autoinject.d.ts"/>
+
 import {autoInject, autoInstantiate} from '../src/autoinject';
 
 class User {

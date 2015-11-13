@@ -1,5 +1,5 @@
 function dependencyInjection(Cls: any, depth: number = 0) {
-    if (typeof Cls !== 'function') {
+    if (typeof Cls !== 'function' || Cls.prototype === undefined) {
         return Cls;
     }
     if (depth >= 10) {
