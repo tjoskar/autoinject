@@ -1,4 +1,6 @@
-import {Reflect} from './reflect-polyfill';
+/// <reference path="../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
+import 'reflect-metadata';
+
 import {dependencyInjection} from './ioc';
 
 const parameterKey = 'design:paramtypes';

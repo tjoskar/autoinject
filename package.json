@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/tjoskar/autoinject#readme",
   "typescript": {
-      "definition": "./typings/autoinject.d.ts"
+    "definition": "./typings/autoinject.d.ts"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.2"
   }
 }
