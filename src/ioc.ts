@@ -1,20 +1,20 @@
-function dependencyInjection(Cls: any, depth: number = 0) {
-    if (typeof Cls !== 'function' || Cls.prototype === undefined) {
-        return Cls;
+function dependencyInjection(cls: any, depth: number = 0) {
+    if (typeof cls !== 'function' || cls.prototype === undefined) {
+        return cls;
     }
     if (depth >= 10) {
         throw new Error('IoC: Too many dependencies');
     }
-    if (!Array.isArray(Cls.inject)) {
-        return new Cls();
+    if (!Array.isArray(cls.inject)) {
+        return new cls();
     }
 
-    var dependencies = Cls.inject.map(dep => {
+    const dependencies = cls.inject.map(dep => {
         return dependencyInjection(dep, depth + 1);
     });
-    dependencies.unshift(Cls);
+    dependencies.unshift(cls);
 
-    return new (Cls.bind.apply(Cls, dependencies))();
+    return new (cls.bind.apply(cls, dependencies))();
 }
 
 export {dependencyInjection};
