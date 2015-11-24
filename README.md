@@ -11,21 +11,53 @@ $ npm install autoinject
 ```
 
 #### Usage
+```javascript
+import {autoInject, dependencyInjection} from 'autoinject';
+
+class User {
+    test = 'It works fine';
+}
+
+@autoInject
+class Db {
+
+    user: User;
+
+    constructor(user: User) {
+        this.user = user;
+    }
+}
+
+@autoInject
+class MyClass {
+
+    db: Db;
+
+    constructor(db: Db) {
+        this.db = db;
+    }
+}
+
+const myClass = dependencyInjection(MyClass);
+
+console.log(myClass.db.user.test);
+```
+
+All dependencies are stored on a static prototype on the target object.
 
 ```javascript
-// Link the d.ts file with `tsd link` or create a reference:
-/// <reference path="node_modules/autoinject/index.d.ts"/>
-
 import {autoInject} from 'autoinject';
-import {DB} from 'db';
+import {Db} from 'db';
 
 @autoInject
 class Controller {
-    constructor(db: DB) {}
+    constructor(db: Db) {}
 }
 
-console.log(Controller.inject); // [ DB ]
+console.log(Controller.inject); // [ Db ]
 ```
+
+You can also auto instantiate a class
 
 ```javascript
 import {autoInject, autoInstantiate} from 'autoinject';
@@ -34,7 +66,7 @@ class User {
     test = 'It works fine';
 }
 
-@autoInject // can be @autoInstantiate
+@autoInjecte
 class Db {
     constructor(public user: User) {}
 }
@@ -49,58 +81,47 @@ var k = new MyClass();
 console.log(k.db.user.test); // output: "It works fine"
 ```
 
-```javascript
-import {inject, autoInstantiate} from 'autoinject';
-
-interface User {
-    test: string;
-}
-
-let user: User = {
-    test: 'It works fine'
-}
-
-class Db {
-
-    user: User;
-
-    constructor(@inject(user) user: User) {
-        this.user = user;
-    }
-}
-
-@autoInstantiate
-class MyClass {
-
-    db: Db;
-
-    constructor(db?: Db) {
-        this.db = db;
-    }
-}
-
-var k = new MyClass();
-
-console.log(k.db.user.test);
-```
+You can always override the inject (for testing purpose)
 
 ```javascript
-import {autoInject, dependencyInjection} from 'autoinject';
-
-class User {
-    test = 'It works fine';
-}
-
-@autoInject
-class Db {
-    public user: User;
-
-    constructor(user: User) {
-        this.user = user;
+// http.ts
+class Http {
+    get(url: string) {
+        // some logic
     }
 }
+export {Http};
 
-let db = dependencyInjection(Db);
+// image-repository.ts
+import {autoInject} from 'autoinject';
+import {Http} from './http';
 
-console.log(db.user.test); // output: "It works fine"
+@autoInjecte
+class ImageRepository {
+    http: Http;
+
+    constructor(http: Http) {
+        this.http = http;
+    }
+
+    getImage() {
+        return this.http.get('/image');
+    }
+}
+export {ImageRepository};
+
+// test.ts
+import {dependencyInjection} from 'autoinject';
+import {ImageRepository} from './image-repository';
+
+const httpMock = {
+    get() {
+        return 'Nice';
+    }
+};
+ImageRepository.inject = [httpMock];
+
+const imageRepository = dependencyInjection(ImageRepository);
+
+console.assert(imageRepository.getImage(), 'Nice');
 ```
