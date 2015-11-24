@@ -2,9 +2,9 @@
 
 exports.__esModule = true;
 
-var _distSrcAutoInject = require('./dist/src/autoinject');
-var _distSrcInject = require('./dist/src/inject');
-var _distSrcIoc = require('./dist/src/ioc');
+var _distSrcAutoInject = require('./dist/autoinject');
+var _distSrcInject = require('./dist/inject');
+var _distSrcIoc = require('./dist/ioc');
 
 exports.autoInject = _distSrcAutoInject.autoInject;
 exports.autoInstantiate = _distSrcAutoInject.autoInstantiate;

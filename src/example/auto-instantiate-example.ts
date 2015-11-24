@@ -1,12 +1,12 @@
-/// <reference path="../typings/autoinject.d.ts"/>
+/// <reference path="../../typings/autoinject.d.ts"/>
 
-import {autoInject, autoInstantiate} from '../src/autoinject';
+import {autoInject, autoInstantiate} from '../autoinject';
 
 class User {
     test = 'It works fine';
 }
 
-@autoInject // can be @autoInstantiate
+@autoInject
 class Db {
 
     user: User;
@@ -26,6 +26,6 @@ class MyClass {
     }
 }
 
-var k = new MyClass();
+const k = new MyClass();
 
 console.log(k.db.user.test);
