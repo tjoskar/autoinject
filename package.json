@@ -1,6 +1,6 @@
 {
   "name": "autoinject",
-  "version": "0.6.3",
+  "version": "0.6.5",
   "description": "Autoinject classes",
   "main": "autoinject.ts",
   "directories": {
