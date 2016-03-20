@@ -1,5 +1,3 @@
-/// <reference path="../../typings/autoinject.d.ts"/>
-
 import {autoInject} from '../autoinject';
 import {dependencyInjection} from '../ioc';
 
