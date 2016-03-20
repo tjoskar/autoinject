@@ -125,3 +125,9 @@ const imageRepository = dependencyInjection(ImageRepository);
 
 console.assert(imageRepository.getImage(), 'Nice');
 ```
+
+Include the typing with:
+```
+"moduleResolution": "node"
+```
+in your tsconfig.json
