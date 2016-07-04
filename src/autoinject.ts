@@ -13,7 +13,7 @@ function autoInject(target): any {
 
     // If a user use default parameters we will get `Object` as argument
     // which will remove the default parameter. That is why we should replace
-    // the argument with undefined so the use are still able to use the default
+    // the argument with undefined so the user still are able to use the default
     // parameter. However, this will make it impossible to create a class with
     // `Object` as argument :(
     // See issue-6: https://github.com/tjoskar/autoinject/issues/6
