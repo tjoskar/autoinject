@@ -28,6 +28,6 @@
     "definition": "./typings/autoinject.d.ts"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.2"
+    "reflect-metadata": "^0.1.12"
   }
 }
